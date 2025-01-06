@@ -13,13 +13,10 @@ class Solution(object):
         index_s = 0
         # loop over t
         for index_t in range(len(t)):
-            if len(final_list) == len(s):
-                break
             if t[index_t] == s[index_s]:
                 final_list += t[index_t]
                 index_s += 1
-        print(final_list)
-        if s == final_list:
-            return True
+            if s == final_list:
+                return True
         return False
         
