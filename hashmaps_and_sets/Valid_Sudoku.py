@@ -1,28 +1,26 @@
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
-        for i in range(0, len(board)):
-            count_map = Counter(board[i])
-            # delete the . entry
-            for key in count_map.keys():
-                if key != "." and count_map[key] > 1:
+        for i in range(9):
+            item_set = set()
+            for j in range(9):
+                if board[i][j] in item_set:
                     return False
+                elif board[i][j] != '.':
+                    item_set.add(board[i][j])
         
         # check for columns
-        for i in range(0, len(board)):
-            column = []
-            for j in range(0, len(board)):
-                column.append(board[j][i])
-            count_map = Counter(column)
-            # delete the . entry
-            for key in count_map.keys():
-                if key != "." and count_map[key] > 1:
+        for i in range(9):
+            item_set = set()
+            for j in range(9):
+                if board[j][i] in item_set:
                     return False
-        i = 0
+                elif board[j][i] != '.':
+                    item_set.add(board[j][i])
         # check for 3x3 matrix
         starts = [(0, 0), (0, 3), (0, 6),
                   (3, 0), (3, 3), (3, 6),
                   (6, 0), (6, 3), (6, 6)]
-        
+
         for i, j in starts:
             s = set()
             for row in range(i, i+3):
